@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package io.fiap.fastfood;
+
+import "google/protobuf/empty.proto";
+import "google/type/decimal.proto";
+
+option java_package = "io.fiap.fastfood";
+option java_multiple_files = true;
+option java_outer_classname = "ProductProto";
+
+/**
+* Customer service
+* @author icaro.damiani1
+*/
+service ProductService {
+    rpc saveProduct(SaveProductRequest) returns (ProductResponse);
+    rpc updateProduct(UpdateProductRequest) returns (ProductResponse);
+    rpc findAllProduct(FindAllProductRequest) returns (stream ProductResponse);
+    rpc findAllProductByType(FindAllProductByTypeRequest) returns (stream ProductResponse);
+}
+
+message SaveProductRequest {
+    optional string id = 1;
+    string typeId = 2;
+    string description = 3;
+    google.type.Decimal price = 4;
+    int64 amount = 5;
+    ProductTypeRequest type = 6;
+}
+
+message ProductTypeRequest {
+    int64 id = 1;
+    string description = 2;
+}
+
+message UpdateProductRequest {
+    string id = 1;
+    string operations = 2;
+}
+
+message FindAllProductRequest {
+}
+
+message FindAllProductByTypeRequest {
+    string typeId = 1;
+}
+
+
+message ProductResponse{
+    string id = 1;
+    string typeId = 2;
+    string description = 3;
+    google.type.Decimal price = 4;
+    int64 amount = 5;
+    ProductTypeResponse type = 6;
+}
+
+message ProductTypeResponse {
+    int64 id = 1;
+    string description = 2;
+}
