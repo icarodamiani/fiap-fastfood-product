@@ -12,9 +12,9 @@ jobs:
   deploy:
     environment:
       name: dev
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     container:
-      image: node:18
+      image: node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
