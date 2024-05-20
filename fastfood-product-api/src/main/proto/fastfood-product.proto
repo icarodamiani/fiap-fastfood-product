@@ -25,12 +25,12 @@ message SaveProductRequest {
     string typeId = 2;
     string description = 3;
     google.type.Decimal price = 4;
-    int64 amount = 5;
+    int32 amount = 5;
     ProductTypeRequest type = 6;
 }
 
 message ProductTypeRequest {
-    int64 id = 1;
+    int32 id = 1;
     string description = 2;
 }
 
@@ -52,11 +52,11 @@ message ProductResponse{
     string typeId = 2;
     string description = 3;
     google.type.Decimal price = 4;
-    int64 amount = 5;
+    int32 amount = 5;
     ProductTypeResponse type = 6;
 }
 
 message ProductTypeResponse {
-    int64 id = 1;
+    int32 id = 1;
     string description = 2;
 }

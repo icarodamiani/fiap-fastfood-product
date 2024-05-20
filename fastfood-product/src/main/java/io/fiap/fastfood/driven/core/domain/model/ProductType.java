@@ -1,12 +1,12 @@
 package io.fiap.fastfood.driven.core.domain.model;
 
 public record ProductType(
-    Long id,
+    Integer id,
     String description) {
 
 
     public static final class ProductTypeBuilder {
-        private Long id;
+        private Integer id;
         private String description;
 
         private ProductTypeBuilder() {
@@ -16,7 +16,7 @@ public record ProductType(
             return new ProductTypeBuilder();
         }
 
-        public ProductTypeBuilder withId(Long id) {
+        public ProductTypeBuilder withId(Integer id) {
             this.id = id;
             return this;
         }
