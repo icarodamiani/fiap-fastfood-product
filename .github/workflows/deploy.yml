@@ -7,6 +7,9 @@ on:
       environment:
         required: true
         type: string
+      tag:
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -29,6 +32,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
+          tag: ${{ inputs.tag }}
           push: true
 
       - name: Deploy Helm
