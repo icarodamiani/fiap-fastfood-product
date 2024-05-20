@@ -13,6 +13,8 @@ jobs:
     environment:
       name: dev
     runs-on: ubuntu-24.04
+    container: node:20
+    image: node:20-alpine
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
