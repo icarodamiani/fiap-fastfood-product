@@ -36,7 +36,7 @@ jobs:
     environment:
       name: dev
     needs: [build]
-    runs-on: ubuntu-latest
+    runs-on: node20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -50,7 +50,7 @@ jobs:
     environment:
       name: dev
     needs: [publish]
-    runs-on: ubuntu-latest
+    runs-on: node20
     steps:
       - uses: ./.github/actions/run-deploy
         with:

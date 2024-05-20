@@ -18,7 +18,7 @@ inputs:
     required: true
 
 runs:
-  using: 'ubuntu-latest'
+  using: 'node20'
   steps:
     - name: Deploy Helm
       uses: bitovi/github-actions-deploy-eks-helm@v1.2.9

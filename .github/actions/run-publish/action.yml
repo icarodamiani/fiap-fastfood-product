@@ -7,7 +7,7 @@ inputs:
     required: true
 
 runs:
-  using: 'ubuntu-latest'
+  using: 'node20'
   steps:
     - name: Check out the repo
       uses: actions/checkout@v4
