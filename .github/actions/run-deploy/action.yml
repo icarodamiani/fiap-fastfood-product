@@ -22,7 +22,7 @@ inputs:
     required: true
 
 runs:
-  using: 'ubuntu-latest'
+  using: ubuntu-20.04
   steps:
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
