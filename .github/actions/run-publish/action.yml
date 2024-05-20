@@ -14,15 +14,15 @@ runs:
 
     - name: "Deploy Snapshot"
       env:
-        GH_USERNAME: ${{ secrets.GH_USERNAME }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}
+        GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
         ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS deploy
 
     - name: "Deploy Release"
       env:
-        GH_USERNAME: ${{ secrets.GH_USERNAME }}
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}
+        GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
         ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform
 
