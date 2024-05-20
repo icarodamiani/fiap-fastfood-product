@@ -1,7 +1,5 @@
-name: CI/CD Pipeline
+name: Product Pipeline
 
-env:
-  CLUSTER_NAME: "eks-cluster-fastfood-t4-g86"
 on:
   workflow_dispatch:
 
@@ -39,7 +37,7 @@ jobs:
         with:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          CLUSTER_NAME: ${{ env.CLUSTER_NAME }}
+          CLUSTER_NAME: "eks-cluster-fastfood-t4-g86"
           VALUES_PATH: charts/fastfood-product/values.yaml
           RELEASE_NAME: fastfood-product
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
