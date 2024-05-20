@@ -30,8 +30,8 @@ runs:
     - name: Install git
       shell: bash
       run: |
-        apt-get update
-        apt-get install git
+        apt-get update -y
+        apt-get install -y git
         git config --global user.email "icarodamiani@gmail.com"
         git config --global user.name "icarodamiani"
 
