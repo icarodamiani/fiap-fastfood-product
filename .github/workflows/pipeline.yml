@@ -57,6 +57,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           CLUSTER_NAME: ${{ env.CLUSTER_NAME }}
-          VALUES_PATH: charts/fastfood-bff/values.yaml
+          VALUES_PATH: charts/fastfood-product/values.yaml
           RELEASE_NAME: fastfood-product
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
