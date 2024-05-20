@@ -21,7 +21,7 @@ runs:
   using: 'ubuntu-latest'
   steps:
     - name: Cache Maven packages
-      uses: actions/cache@v4
+      uses: actions/cache@v3
       with:
         path: ${{ inputs.MAVEN_REPO }}
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -69,7 +69,7 @@ runs:
         ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform -pl ${{ inputs.PROJECT }}
 
     - name: Archive Production Artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: jar
         path: target/*.jar
