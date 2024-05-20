@@ -20,7 +20,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Cache Maven packages
+    - name: Cache maven packages
       uses: actions/cache@v4
       with:
         path: ${{ inputs.MAVEN_REPO }}
@@ -42,34 +42,34 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} clean install -pl ${{ inputs.PROJECT }} -U -P dev
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} clean install -pl ${{ inputs.PROJECT }} -U -P dev
 
-    - name: Publish JAR
+    - name: "Prepare release"
       shell: bash
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:prepare -pl ${{ inputs.PROJECT }}
       env:
         GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
 
-    - name: "Deploy Snapshot"
+    - name: "Deploy snapshot"
       shell: bash
       env:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} deploy -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} deploy -pl ${{ inputs.PROJECT }}
 
-    - name: "Deploy Release"
+    - name: "Deploy release"
       shell: bash
       env:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:perform -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:perform -pl ${{ inputs.PROJECT }}
 
-    - name: Archive Production Artifacts
+    - name: Archive production artifacts
       uses: actions/upload-artifact@v4
       with:
         name: jar
