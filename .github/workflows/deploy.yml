@@ -12,7 +12,7 @@ jobs:
   deploy:
     environment:
       name: dev
-    runs-on: ubuntu-latest
+    runs-on: docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
