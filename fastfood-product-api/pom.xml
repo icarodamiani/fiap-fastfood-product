@@ -12,6 +12,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
@@ -43,13 +44,6 @@
             <url>https://maven.pkg.github.com/icarodamiani/fiap-fastfood-product</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <scm>
-        <connection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</connection>
-        <url>https://github.com/icarodamiani/fiap-fastfood-product.git</url>
-        <developerConnection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <dependencyManagement>
         <dependencies>
