@@ -1,11 +1,9 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches: [ "main", "development" ]
-  workflow_call:
-
   workflow_dispatch:
+
+  workflow_call:
 
 env:
   CLUSTER_NAME: "eks-cluster-fastfood-t4-g86"
@@ -31,18 +29,6 @@ jobs:
         with:
           GH_USERNAME: ${{vars.GH_USERNAME}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}
-
-  publish:
-    environment:
-      name: dev
-    needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - uses: ./.github/actions/run-publish
-        with:
           DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
