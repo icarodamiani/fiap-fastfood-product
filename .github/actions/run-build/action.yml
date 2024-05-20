@@ -27,6 +27,13 @@ runs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
+    - name: Install git
+      shell: bash
+      run: |
+        sudo apt-get install git
+        git config --global user.email "icarodamiani@gmail.com"
+        git config --global user.name "icarodamiani"
+
     - name: Build
       shell: bash
       env:
@@ -38,11 +45,20 @@ runs:
 
     - name: Publish JAR
       shell: bash
-      run: ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare release:perform -pl ${{ inputs.PROJECT }}
+      run: |
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare -pl ${{ inputs.PROJECT }}
       env:
         GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
+
+    - name: "Deploy Snapshot"
+      shell: bash
+      env:
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}
+        GH_TOKEN: ${{ inputs.GH_TOKEN }}
+      run: |
+        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS deploy -pl ${{ inputs.PROJECT }}
 
     - name: "Deploy Release"
       shell: bash
