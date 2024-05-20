@@ -1,0 +1,52 @@
+name: 'Publish package'
+description: 'Publishes packages to aws'
+inputs:
+  AWS_SECRET_ACCESS_KEY:
+    required: true
+  AWS_ACCESS_KEY_ID:
+    required: true
+  AWS_REGION:
+    required: false
+    default: "eu-east-1"
+  CLUSTER_NAME:
+    required: true
+  VALUES_PATH:
+    required: true
+  RELEASE_NAME:
+    required: true
+  MONGO_PASSWORD:
+    required: true
+  DOCKER_USERNAME:
+    required: true
+  DOCKER_PASSWORD:
+    required: true
+
+runs:
+  using: 'ubuntu-latest'
+  steps:
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ inputs.DOCKER_USERNAME }}
+        password: ${{ inputs.DOCKER_PASSWORD }}
+
+    - name: Build and push Docker image
+      id: push
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+
+    - name: Deploy Helm
+      uses: bitovi/github-actions-deploy-eks-helm@v1.2.9
+      with:
+        aws-access-key-id: ${{ inputs.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ inputs.AWS_REGION }}
+        cluster-name: ${{ inputs.CLUSTER_NAME }}
+        config-files: ${{ inputs.VALUES_PATH }}
+        chart-path: charts/
+        namespace: default
+        name: ${{ inputs.RELEASE_NAME }}
+        values: mongo_host=fastfood-documentdb.cluster-cdsw6i8u48rd.us-east-1.docdb.amazonaws.com,mongo_password= ${{ inputs.MONGO_PASSWORD }}
