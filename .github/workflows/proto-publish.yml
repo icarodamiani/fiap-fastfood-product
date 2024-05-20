@@ -1,4 +1,4 @@
-name: Product Proto Pipeline
+name: Build&Publish product proto
 
 on:
   workflow_dispatch:
