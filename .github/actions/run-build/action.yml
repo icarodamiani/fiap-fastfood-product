@@ -34,6 +34,7 @@ runs:
         restore-keys: ${{ runner.os }}-m2
 
     - name: Configure Git user
+      shell: bash
       run: |
         git config user.email "icarodamiani@gmail.com.com"
         git config user.name "icarodamiani"
