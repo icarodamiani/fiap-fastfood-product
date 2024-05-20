@@ -33,12 +33,6 @@ runs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
 
-    - name: Configure Git user
-      shell: bash
-      run: |
-        git config user.email "icarodamiani@gmail.com.com"
-        git config user.name "icarodamiani"
-
     - name: Build
       shell: bash
       env:
