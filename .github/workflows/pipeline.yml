@@ -12,7 +12,7 @@ jobs:
   build:
     environment:
       name: dev
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     container:
       image: openjdk:17.0.1-jdk-slim
     steps:
@@ -35,7 +35,7 @@ jobs:
     environment:
       name: dev
     needs: [build]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: ./.github/actions/run-deploy
         with:
