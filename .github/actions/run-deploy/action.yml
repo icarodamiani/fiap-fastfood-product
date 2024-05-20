@@ -22,7 +22,9 @@ inputs:
     required: true
 
 runs:
-  using: ubuntu-24.04
+  using: ubuntu-latest
+  container:
+    image: node:18
   steps:
     - name: Log in to Docker Hub
       uses: docker/login-action@v4
