@@ -19,8 +19,6 @@ inputs:
 
 runs:
   runs-on: ubuntu-latest
-  container:
-    image: node:18
   steps:
     - name: Cache maven packages
       uses: actions/cache@v4
