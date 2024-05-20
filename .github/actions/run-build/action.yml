@@ -49,6 +49,7 @@ runs:
         ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} clean install -U -P dev
 
     - name: Publish JAR
+      shell: bash
       run: ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare release:perform
       env:
         GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
