@@ -22,10 +22,10 @@ inputs:
     required: true
 
 runs:
-  using: 'ubuntu-latest'
+  using: ubuntu-latest
   steps:
     - name: Log in to Docker Hub
-      uses: docker/login-action@v3
+      uses: docker/login-action@v4
       with:
         username: ${{ inputs.DOCKER_USERNAME }}
         password: ${{ inputs.DOCKER_PASSWORD }}

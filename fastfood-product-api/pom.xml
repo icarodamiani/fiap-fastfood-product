@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.fiap.fastfood</groupId>
     <artifactId>fastfood-product-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath /> <!-- lookup parent from repository -->
     </parent>
 
     <properties>
@@ -32,6 +31,13 @@
         <project.scm.id>gh-release</project.scm.id>
     </properties>
 
+    <scm>
+        <connection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</connection>
+        <url>https://github.com/icarodamiani/fiap-fastfood-product.git</url>
+        <developerConnection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</developerConnection>
+        <tag>fastfood-product-parent-1.0.0</tag>
+    </scm>
+
     <distributionManagement>
         <repository>
             <id>gh-release</id>
@@ -44,13 +50,6 @@
             <url>https://maven.pkg.github.com/icarodamiani/fiap-fastfood-product</url>
         </snapshotRepository>
     </distributionManagement>
-
-    <scm>
-        <connection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</connection>
-        <url>https://github.com/icarodamiani/fiap-fastfood-product.git</url>
-        <developerConnection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <dependencyManagement>
         <dependencies>
@@ -114,7 +113,7 @@
             <resource>
                 <directory>src/main/proto</directory>
                 <includes>
-                    <include>fastfood-customer.proto</include>
+                    <include>fastfood-product.proto</include>
                 </includes>
             </resource>
         </resources>
@@ -137,6 +136,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalOptions>-Xdoclint:none</additionalOptions>
+                </configuration>
             </plugin>
 
             <plugin>
