@@ -1,4 +1,4 @@
-name: Product Pipeline
+name: Product Proto Pipeline
 
 on:
   workflow_dispatch:
