@@ -12,20 +12,6 @@ runs:
     - name: Check out the repo
       uses: actions/checkout@v4
 
-    - name: "Deploy Snapshot"
-      env:
-        GH_USERNAME: ${{ inputs.GH_USERNAME }}
-        GH_TOKEN: ${{ inputs.GH_TOKEN }}
-      run: |
-        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS deploy
-
-    - name: "Deploy Release"
-      env:
-        GH_USERNAME: ${{ inputs.GH_USERNAME }}
-        GH_TOKEN: ${{ inputs.GH_TOKEN }}
-      run: |
-        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform
-
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:

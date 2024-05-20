@@ -33,6 +33,23 @@ runs:
       run: |
         ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} clean install -U -P dev
 
+
+    - name: "Deploy Snapshot"
+      shell: bash
+      env:
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}
+        GH_TOKEN: ${{ inputs.GH_TOKEN }}
+      run: |
+        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS deploy
+
+    - name: "Deploy Release"
+      shell: bash
+      env:
+        GH_USERNAME: ${{ inputs.GH_USERNAME }}
+        GH_TOKEN: ${{ inputs.GH_TOKEN }}
+      run: |
+        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform
+
     - name: Archive Production Artifacts
       uses: actions/upload-artifact@v4
       with:
