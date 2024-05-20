@@ -34,8 +34,8 @@ public class ProductGrpcServer extends ProductServiceGrpc.ProductServiceImplBase
     @Override
     public void saveProduct(SaveProductRequest request, StreamObserver<ProductResponse> responseObserver) {
         service.create(Product.ProductBuilder.builder()
-                .withId(request.getId())
                 .withTypeId(request.getTypeId())
+                .withAmount(request.getAmount())
                 .withDescription(request.getDescription())
                 .withPrice(new BigDecimal(request.getPrice().getValue()))
                 .withType(ProductType.ProductTypeBuilder.builder()
@@ -101,7 +101,7 @@ public class ProductGrpcServer extends ProductServiceGrpc.ProductServiceImplBase
 
     @Override
     public void findAllProductByType(FindAllProductByTypeRequest request, StreamObserver<ProductResponse> responseObserver) {
-        service.findAll(Pageable.unpaged())
+        service.findByType(request.getTypeId(), Pageable.unpaged())
             .doOnError(throwable -> responseObserver.onError(statusConverter.toGrpcException(throwable)))
             .map(product ->
                 ProductResponse.newBuilder()
