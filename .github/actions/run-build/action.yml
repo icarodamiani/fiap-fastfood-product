@@ -1,5 +1,5 @@
 name: 'Maven Tests'
-description: 'Runs maven build on the targeted project'
+description: 'Runs maven build on the targeted EXCLUDE_PROJECT'
 inputs:
   GH_USERNAME:
     required: true
@@ -14,7 +14,7 @@ inputs:
   MAVEN_OPTS:
     required: false
     default: '-Dmaven.repo.local=.m2/repository'
-  PROJECT:
+  EXCLUDE_PROJECT:
     required: true
 
 runs:
@@ -42,12 +42,12 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} clean install -pl ${{ inputs.PROJECT }} -U -P dev
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} clean install -pl !${{ inputs.EXCLUDE_PROJECT }} -U -P dev
 
     - name: "Prepare release"
       shell: bash
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:prepare -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:prepare -pl !${{ inputs.EXCLUDE_PROJECT }}
       env:
         GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
@@ -59,7 +59,7 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} deploy -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} deploy -pl !${{ inputs.EXCLUDE_PROJECT }}
 
     - name: "Deploy release"
       shell: bash
@@ -67,7 +67,7 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:perform -pl ${{ inputs.PROJECT }}
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:perform -pl !${{ inputs.EXCLUDE_PROJECT }}
 
     - name: Archive production artifacts
       uses: actions/upload-artifact@v4

@@ -29,4 +29,4 @@ jobs:
         with:
           GH_USERNAME: ${{vars.GH_USERNAME}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}
-          PROJECT: fastfood-product-api
+          EXCLUDE_PROJECT: fastfood-product
