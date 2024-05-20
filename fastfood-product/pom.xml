@@ -46,8 +46,6 @@
         </snapshotRepository>
     </distributionManagement>
 
-
-
     <repositories>
         <repository>
             <id>gh-release</id>
@@ -63,13 +61,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-    <scm>
-        <connection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</connection>
-        <url>https://github.com/icarodamiani/fiap-fastfood-product.git</url>
-        <developerConnection>scm:git:https://github.com/icarodamiani/fiap-fastfood-product.git</developerConnection>
-        <tag>HEAD</tag>
-    </scm>
 
     <dependencyManagement>
         <dependencies>
