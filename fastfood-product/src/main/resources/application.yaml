@@ -1,14 +1,11 @@
 spring:
   application:
-    name: fiap-fastfood-customer
-
-  profiles:
-    active: ${SPRING_PROFILES_ACTIVE:local}
+    name: fastfood-product
 
   data:
     mongodb:
       repositories: true
-      port: ${MONGODB_PORT:27019}
+      port: ${MONGODB_PORT:27017}
       auto-index-creation: true
       uuid-representation: standard
       host: ${MONGODB_HOST:localhost}

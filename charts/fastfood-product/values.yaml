@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: ghcr.io/icarodamiani/fiap-fastfood-customer
+  repository: icarodamiani/fiap-fastfood-product
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest
@@ -65,15 +65,10 @@ tolerations: []
 
 affinity: {}
 
-secrets:
-  - name: CUSTOMER_DB_PASSWORD
-    key: customer-db-password
-    secret: customer-db
-
 env:
-  - name: CUSTOMER_DB_USER
+  - name: MONGODB_USERNAME
     value: fastfood
-  - name: CUSTOMER_DB_URL
-    value: fastfood-customer
-  - name: CUSTOMER_DB_PORT
-    value: "5443"
+  - name: MONGODB_PASSWORD
+    value: {{ .Values.mongo_password }}
+  - name: MONGODB_HOST
+    value: {{ .Values.mongo_host }}
