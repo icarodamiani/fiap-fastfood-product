@@ -21,7 +21,7 @@ runs:
   using: 'ubuntu-latest'
   steps:
     - name: Cache Maven packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ${{ inputs.MAVEN_REPO }}
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
