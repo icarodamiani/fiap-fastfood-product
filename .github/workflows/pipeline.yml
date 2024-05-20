@@ -1,9 +1,12 @@
 name: Product Pipeline
 
 on:
-  push:
-    branches: [ "main", "development" ]
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   build:
