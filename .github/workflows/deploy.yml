@@ -14,6 +14,9 @@ jobs:
       name: dev
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - uses: ./.github/actions/run-deploy
         with:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
