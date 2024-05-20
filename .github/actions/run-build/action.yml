@@ -14,13 +14,7 @@ inputs:
   MAVEN_OPTS:
     required: false
     default: '-Dmaven.repo.local=.m2/repository'
-  RELEASE_VERSION:
-    required: true
-  DEVELOPMENT_VERSION:
-    required: true
-  DOCKER_USERNAME:
-    required: true
-  DOCKER_PASSWORD:
+  PROJECT:
     required: true
 
 runs:
@@ -40,11 +34,11 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} clean install -U -P dev
+        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} clean install -pl ${{ PROJECT }} -U -P dev
 
     - name: Publish JAR
       shell: bash
-      run: ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare release:perform
+      run: ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} ${{ inputs.MAVEN_OPTS }} release:prepare release:perform -pl ${{ PROJECT }}
       env:
         GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
@@ -56,24 +50,10 @@ runs:
         GH_USERNAME: ${{ inputs.GH_USERNAME }}
         GH_TOKEN: ${{ inputs.GH_TOKEN }}
       run: |
-        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform
+        ./mvnw $MAVEN_CLI_OPTS $MAVEN_OPTS release:perform -pl ${{ PROJECT }}
 
     - name: Archive Production Artifacts
       uses: actions/upload-artifact@v4
       with:
         name: jar
         path: target/*.jar
-
-    - name: Log in to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ inputs.DOCKER_USERNAME }}
-        password: ${{ inputs.DOCKER_PASSWORD }}
-
-    - name: Build and push Docker image
-      id: push
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true

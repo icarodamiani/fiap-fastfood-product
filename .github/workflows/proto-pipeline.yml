@@ -1,0 +1,27 @@
+name: Product Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    environment:
+      name: dev
+    runs-on: ubuntu-latest
+    container:
+      image: openjdk:17.0.1-jdk-slim
+    steps:
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '17'
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/run-build
+        with:
+          GH_USERNAME: ${{vars.GH_USERNAME}}
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          PROJECT: fastfood-product-api

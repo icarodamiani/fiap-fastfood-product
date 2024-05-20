@@ -26,8 +26,7 @@ jobs:
         with:
           GH_USERNAME: ${{vars.GH_USERNAME}}
           GH_TOKEN: ${{secrets.GH_TOKEN}}
-          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          PROJECT: fastfood-product
 
   deploy:
     environment:
@@ -43,3 +42,5 @@ jobs:
           VALUES_PATH: charts/fastfood-product/values.yaml
           RELEASE_NAME: fastfood-product
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
