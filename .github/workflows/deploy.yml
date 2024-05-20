@@ -12,7 +12,8 @@ jobs:
   deploy:
     environment:
       name: dev
-    runs-on: docker
+    runs-on: ubuntu-latest
+    container: node:20
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
