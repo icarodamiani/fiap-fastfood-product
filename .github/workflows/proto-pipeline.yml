@@ -13,8 +13,6 @@ jobs:
     environment:
       name: dev
     runs-on: ubuntu-latest
-    container:
-      image: openjdk:17.0.1-jdk-slim
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v4
