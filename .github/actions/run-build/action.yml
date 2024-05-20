@@ -44,15 +44,6 @@ runs:
       run: |
         ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} clean install -pl !${{ inputs.EXCLUDE_PROJECT }} -U -P dev
 
-    - name: "Prepare release"
-      shell: bash
-      run: |
-        ./mvnw ${{ inputs.MAVEN_CLI_OPTS }} release:prepare -pl !${{ inputs.EXCLUDE_PROJECT }}
-      env:
-        GITHUB_TOKEN: ${{ inputs.GH_TOKEN }}
-        GH_USERNAME: ${{ inputs.GH_USERNAME }}
-        GH_TOKEN: ${{ inputs.GH_TOKEN }}
-
     - name: "Deploy snapshot"
       shell: bash
       env:
