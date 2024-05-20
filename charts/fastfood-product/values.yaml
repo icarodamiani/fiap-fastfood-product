@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: icarodamiani/fiap-fastfood-product
+  repository: icarodamiani/fastfood-product
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: latest

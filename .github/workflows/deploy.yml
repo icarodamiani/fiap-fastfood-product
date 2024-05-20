@@ -52,7 +52,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: "eu-east-1"
-          cluster-name: "eks-cluster-fastfood-t4-g86"
+          cluster-name: "fiap-fastfood-t4-g86"
           config-files: charts/fastfood-product/values.yaml
           chart-path: charts/
           namespace: default
