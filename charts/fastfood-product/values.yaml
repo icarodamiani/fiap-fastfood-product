@@ -14,6 +14,10 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+service:
+  type: ClusterIP
+  port: 5432
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
@@ -69,6 +73,6 @@ env:
   - name: MONGODB_USERNAME
     value: fastfood
   - name: MONGODB_PASSWORD
-    value: {{ .Values.mongo_password }}
+    value: Fiap2024!
   - name: MONGODB_HOST
-    value: {{ .Values.mongo_host }}
+    value: fastfood-documentdb.cluster-cdsw6i8u48rd.us-east-1.docdb.amazonaws.com
