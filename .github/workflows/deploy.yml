@@ -67,8 +67,9 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ steps.commit.outputs.short }}
         run: |
-          helm upgrade --install \
-          --kubeconfig ./kube_config fastfood-product charts/ \
+          helm upgrade fastfood-product charts/ \
+          --install \
+          --kubeconfig ./kube_config \
           --set containers.image=icarodamiani/fastfood-product:latest \
           --set mongo_host= ${{ vars.MONGO_HOST }}\
           --set mongo_password=${{ secrets.MONGO_PASSWORD }}
