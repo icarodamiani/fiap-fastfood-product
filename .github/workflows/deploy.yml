@@ -7,6 +7,11 @@ on:
       environment:
         required: true
         type: string
+env:
+  AWS_REGION: us-east-1
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   deploy:
@@ -51,11 +56,11 @@ jobs:
         with:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            aws-region: "eu-east-1"
+            aws-region: ${{ env.AWS_REGION }}
 
       - name: Update KubeConfig
         run: |
-            aws eks update-kubeconfig --name "fiap-fastfood-t4-g86" --region="eu-east-1"
+            aws eks update-kubeconfig --name "fiap-fastfood-t4-g86" --region=${{ env.AWS_REGION }}
 
       - name: Deploy Helm Chart To Amazon EKS Cluster
         env:
@@ -65,5 +70,5 @@ jobs:
           helm upgrade --install \
           --kubeconfig ./kube_config fastfood-product charts/ \
           --set containers.image=icarodamiani/fastfood-product:latest \
-          --set mongo_host=fastfood-documentdb.cluster-cdsw6i8u48rd.us-east-1.docdb.amazonaws.com \
-          --set mongo_password=${{ inputs.MONGO_PASSWORD }}
+          --set mongo_host= ${{ vars.MONGO_HOST }}\
+          --set mongo_password=${{ secrets.MONGO_PASSWORD }}
