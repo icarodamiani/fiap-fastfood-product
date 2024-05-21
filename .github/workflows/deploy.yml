@@ -69,5 +69,5 @@ jobs:
         run: |
           helm upgrade --install fastfood-product charts/ \
           --kubeconfig ./kube_config \
-          --set mongo_host= ${{ vars.MONGO_HOST }}\
+          --set mongo_host=${{ vars.MONGO_HOST }}\
           --set mongo_password=${{ secrets.MONGO_PASSWORD }}
