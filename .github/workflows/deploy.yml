@@ -61,6 +61,8 @@ jobs:
       - name: Update KubeConfig
         run: |
             aws eks update-kubeconfig --name "fiap-fastfood-t4-g86" --region=${{ env.AWS_REGION }}
+            ls -l
+            ls -l $HOME
 
       - name: Deploy Helm Chart To Amazon EKS Cluster
         env:
