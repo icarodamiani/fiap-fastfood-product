@@ -61,8 +61,6 @@ jobs:
       - name: Update KubeConfig
         run: |
             aws eks update-kubeconfig --name "fiap-fastfood-t4-g86" --region=${{ env.AWS_REGION }}
-            ls -l
-            ls -l $HOME
 
       - name: Deploy Helm Chart To Amazon EKS Cluster
         env:
@@ -70,7 +68,7 @@ jobs:
           IMAGE_TAG: ${{ steps.commit.outputs.short }}
         run: |
           helm upgrade --install fastfood-product charts/fastfood-product \
-          --kubeconfig ./kube_config \
+          --kubeconfig /home/runner/.kube/config \
           --set containers.image=icarodamiani/fastfood-product \
           --set image.tag=latest \
           --set database.mongodb.username.value=${{ vars.MONGO_USERNAME }} \
