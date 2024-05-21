@@ -1,13 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "fastfood-api.fullname" . }}
+  name: {{ include "fastfood-product.fullname" . }}
   labels:
-    {{- include "fastfood-api.labels" . | nindent 4 }}
-  {{- with .Values.service.annotations }}
-  annotations:
-    {{- toYaml . | nindent 4 }}
-  {{- end }}
+    {{- include "fastfood-product.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -16,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "fastfood-api.selectorLabels" . | nindent 4 }}
+    {{- include "fastfood-product.selectorLabels" . | nindent 4 }}
