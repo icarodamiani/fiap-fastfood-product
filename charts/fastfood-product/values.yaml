@@ -96,3 +96,18 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+database:
+  mongodb:
+    username:
+      name: "MONGO_USERNAME"
+      value: "fastfood"
+    password:
+      name: "MONGO_PASSWORD"
+      value: "password"
+    host:
+      name: "MONGO_HOST"
+      value: "mongodb"
+    port:
+      name: "MONGO_PORT"
+      value: "27017"
