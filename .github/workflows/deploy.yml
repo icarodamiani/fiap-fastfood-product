@@ -71,11 +71,6 @@ jobs:
           --kubeconfig ./kube_config \
           --set containers.image=icarodamiani/fastfood-product \
           --set image.tag=latest \
-          --set "env: - name: SPRING_PROFILES_ACTIVE 
-          value: \"dev\" 
-          - name: MONGODB_PASSWORD
-          value: \"${{ secrets.MONGO_PASSWORD }}\" 
-          - name: MONGODB_HOST 
-          value: \"${{ vars.MONGO_HOST }}\" 
-          - name: MONGODB_HOST 
-          value: \"fastfood\" "
+          --set database.mongodb.username.value=${{ vars.MONGO_USERNAME }} \
+          --set database.mongodb.host.value=${{ vars.MONGO_HOST }} \
+          --set database.mongodb.password.value=${{ secrets.MONGO_PASSWORD }}
