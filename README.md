@@ -57,7 +57,7 @@ aws eks update-kubeconfig --name {CLUSTER_NAME} --region={AWS_REGION}
 4 -
 ```
 helm upgrade --install fastfood-order charts/fastfood-product \
---kubeconfig /home/runner/.kube/config \
+--kubeconfig $HOME/.kube/config \
 --set containers.image=icarodamiani/fastfood-product \
 --set image.tag=latest \
 --set database.mongodb.username.value=fastfood \
