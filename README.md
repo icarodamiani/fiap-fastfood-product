@@ -34,7 +34,6 @@ docker-compose up
 ```
 Os serviçõs gRPC são expostos em [localhost:9090](http://localhost:9090).
 
-
 ## Deploy
 
 O deploy pode ser realizado através da execução do pipeline "Deploy product" no Github Actions.
