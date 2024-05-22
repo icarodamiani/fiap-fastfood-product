@@ -15,6 +15,9 @@ spring:
       password: ${MONGODB_PASSWORD:rootpassword}
 
 management:
+  health:
+    probes:
+      enabled: true
   endpoint:
     loggers:
       enabled: true
