@@ -2,6 +2,9 @@ spring:
   application:
     name: fastfood-product
 
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+
   data:
     mongodb:
       repositories: true
